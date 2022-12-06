@@ -1,19 +1,15 @@
 <nz-layout class="app-layout">
-  <nz-sider class="menu-sidebar"
-            nzCollapsible
-            nzWidth="256px"
-            nzBreakpoint="md"
-            [(nzCollapsed)]="isCollapsed"
-            [nzTrigger]="null">
+  <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null">
     <div class="sidebar-logo">
       <a href="https://ng.ant.design/" target="_blank">
         <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
-        <h1>Ant Design Of Angular</h1>
+        <h1>Smart Managment</h1>
       </a>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
       <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
-        <ul>
+        <!-- <ul>
           <li nz-menu-item nzMatchRouter>
             <a routerLink="/welcome">Welcome</a>
           </li>
@@ -23,31 +19,78 @@
           <li nz-menu-item nzMatchRouter>
             <a>Workplace</a>
           </li>
-        </ul>
+        </ul> -->
       </li>
       <li nz-submenu nzOpen nzTitle="Form" nzIcon="form">
-        <ul>
+        <!-- <ul>
           <li nz-menu-item nzMatchRouter>
             <a>Basic Form</a>
           </li>
-        </ul>
+        </ul> -->
       </li>
     </ul>
   </nz-sider>
   <nz-layout>
     <nz-header>
       <div class="app-header">
-        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-            <span class="trigger"
-               nz-icon
-               [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-            ></span>
-        </span>
+        <div class="form-section" nzSpan="24">
+          <nz-row>
+            <div nz-col nzXs="2" nzSm="2" nzMd="2" nzLg="2" nzXl="2">
+              <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+                <span class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></span>
+              </span>
+            </div>
+            <div nz-col nzXs="12" nzSm="12" nzMd="12" nzLg="12" nzXl="12">
+              <nz-row>
+                <div nz-col nzXs="3" nzSm="3" nzMd="3" nzLg="3" nzXl="3">
+                  <img style="border-radius: 5px;" width="50px" height="50px"
+                    src="data:image/png;base64,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" />
+                </div>
+                <div nz-col nzXs="9" nzSm="9" nzMd="9" nzLg="9" nzXl="9">
+                  <span style="font-size:larger;font-weight: bold;">
+                    Stocks Managment
+                  </span>
+                </div>
+              </nz-row>
+            </div>
+            <div nz-col nzXs="10" nzSm="10" nzMd="10" nzLg="10" nzXl="10">
+              <span style="float: right;padding-right:10px;">Abdul Haseeb <span nz-icon nzType="down-circle"
+                  nzTheme="fill"></span> </span>
+            </div>
+          </nz-row>
+        </div>
+      </div>
+    </nz-header>
+    <nz-header style="background-color: #f0f0f0;">
+      <div nzSpan="24">
+        <nz-row>
+          <div nz-col nzXs="2" nzSm="2" nzMd="2" nzLg="2" nzXl="2">
+            &nbsp;
+          </div>
+          <div nz-col nzXs="3" nzSm="3" nzMd="3" nzLg="3" nzXl="3">
+            <span nz-icon nzType="edit" nzTheme="fill" style="font-size: 20px;color: 
+         #6a6a6a;"></span> <span style="font-size:14px;color:#545454"> Data Entry</span>
+          </div>
+          <div nz-col nzXs="4" nzSm="4" nzMd="4" nzLg="4" nzXl="4">
+           &nbsp;
+          </div>
+          <div nz-col nzXs="6" nzSm="6" nzMd="6" nzLg="6" nzXl="6">
+            <span nz-icon nzType="dashboard" nzTheme="fill" style="font-size: 20px;color: 
+            #6a6a6a;"></span> <span style="font-size:14px;color:#545454"> Dashboards</span>
+          </div>
+          <div nz-col nzXs="6" nzSm="6" nzMd="6" nzLg="6" nzXl="6">
+            <span nz-icon nzType="database" nzTheme="fill" style="font-size: 20px;color: 
+            #6a6a6a;"></span> <span style="font-size:14px;color:#545454"> Data store</span>
+          </div>
+          <div nz-col nzXs="2" nzSm="2" nzMd="2" nzLg="2" nzXl="2">
+            &nbsp;
+          </div>
+        </nz-row>
       </div>
     </nz-header>
     <nz-content>
       <div class="inner-content">
-         <router-outlet></router-outlet> 
+        <router-outlet></router-outlet>
       </div>
     </nz-content>
   </nz-layout>
